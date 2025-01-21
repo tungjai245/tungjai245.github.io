@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChordHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dc86b8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #app {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        input {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #dc6e88f7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #chordsDisplay {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>ChordHub</h1>
+        <p>ค้นหาคอร์ดเพลงได้ง่าย ๆ</p>
+        <input type="text" id="songInput" placeholder="กรอกชื่อเพลง">
+        <button onclick="showChords()">แสดงคอร์ด</button>
+        <div id="chordsDisplay"></div>
+    </div>
+    <script>
+        function showChords() {
+            const songInput = document.getElementById('songInput').value;
+            const chordsDisplay = document.getElementById('chordsDisplay');
+
+            // ตรวจสอบว่าผู้ใช้กรอกข้อความหรือไม่
+            if (songInput.trim() === "") {
+                chordsDisplay.innerHTML = "<p>กรุณากรอกชื่อเพลง</p>";
+                return;
+            }
+
+            // ฐานข้อมูลคอร์ดตัวอย่าง
+            const chordDatabase = {
+                "Happy Birthday": ["C", "G", "G7", "F"],
+                "Twinkle Twinkle": ["C", "F", "G", "C"],
+                "Jingle Bells": ["G", "C", "D7", "G"],
+                "ใจสั่งมา": ["G", "Em", "C", "G"],
+                "คู่ชีวิต": ["C", "G", "Am", "F"],
+                "อยู่ต่อเลยได้ไหม":["C", "G", "Am", "F"],
+                "เชือกวิเศษ":["Am", "F", "C", "G"],
+                "ภาวนา":["C", "G", "Am", "F"],
+        
+            };
+
+// ค้นหาคอร์ดในฐานข้อมูล
+const chords = chordDatabase[songInput] || ["ไม่พบคอร์ดสำหรับเพลงนี้"];
+
+// แสดงผลคอร์ด
+chordsDisplay.innerHTML = `<p><strong>${songInput}</strong>: ${chords.join(" - ")}</p>`;
+}
+</script>
+</body>
+</html>
